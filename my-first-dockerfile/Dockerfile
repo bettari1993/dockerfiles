@@ -1,4 +1,4 @@
-FROM ubuntu:letest
+FROM ubuntu:latest
 #set the working directory in the image
 WORKDIR /app
 
