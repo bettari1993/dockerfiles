@@ -8,7 +8,7 @@ COPY . /app
 
 #install necessary packeges
 
-RUN dnf update && dnf install -y python3 python3-pip
+RUN apt-get update && apt-get install -y python3 python3-pip
 
 #run a command start the application
 CMD [ "python3", "app.py" ]
