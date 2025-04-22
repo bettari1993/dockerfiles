@@ -1,16 +1,37 @@
-FROM ubuntu:latest
+# FROM ubuntu:latest
+
+# WORKDIR /app
+
+# COPY requirements.txt /app/
+
+# RUN apt-get update && \
+#     apt-get install -y python3 python3-pip && \
+#     pip install -r requirements.txt && \
+#     cd devops
+
+# ENTRYPOINT [ "python3" ]
+
+# CMD [ "manage.py", "runserver", "0.0.0.0:8000" ]
+FROM ubuntu
 
 WORKDIR /app
 
 COPY requirements.txt /app/
+COPY devops /app/
 
-RUN apt-get update && \
-    apt-get install -y python3 python3-pip && \
-    pip install -r requirements.txt && \
-    cd devops
+RUN apt-get update && apt-get install -y python3 python3-pip python3-venv
 
-ENTRYPOINT [ "python3" ]
+SHELL ["/bin/bash", "-c"]
 
-CMD [ "manage.py", "runserver", "0.0.0.0:8000" ]
+RUN python3 -m venv venv1 && \
+source venv1/bin/activate && \
+pip install --no-cache-dir -r requirements.txt
+
+EXPOSE 8000
+
+CMD source venv1/bin/activate && python3 manage.py runserver 0.0.0.0:8000
+
+
+
 
 
