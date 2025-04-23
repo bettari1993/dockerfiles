@@ -1,2 +1,9 @@
 FROM almalinux:9
-RUN dnf install nginx -y
+LABEL author="raju bettari" \
+      company="devops" \
+      topic="lable" \
+      duration="1 hour"
+      
+
+
+
